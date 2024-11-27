@@ -4,7 +4,7 @@
       <div class="container ">
 
 
-        <a class="navbar-brand" href="./index.html"><img  src="{{ asset('storage/images/logo.png') }}"</a>
+        <a class="navbar-brand" href="{{route('/')}}"><img  src="{{ asset('storage/images/logo.png') }}"></a>
 
 
         <button class="navbar-toggler text-white" type="button" data-bs-toggle="offcanvas"
@@ -21,7 +21,7 @@
           <div class="offcanvas-body">
             <ul class="navbar-nav align-items-center justify-content-end align-items-center flex-grow-1 ">
               <li class="nav-item">
-                <a class="nav-link active me-md-4" href="#billboard">Home</a>
+                <a class="nav-link active me-md-4 mb-4" href="#billboard">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link me-md-4" href="#residence">Properties</a>
@@ -83,67 +83,9 @@
                           </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                          <!--nav login-->
-                          <div class="tab-pane fade active show" id="nav-sign-in" role="tabpanel"
-                            aria-labelledby="nav-sign-in-tab">
-                            <form id="form1" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail1"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail1" name="email" placeholder="Email"
-                                  class="form-control ps-3">
-                              </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword1"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword1" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                                <div id="passwordHelpBlock" class="form-text text-center">
-                                  <a href="#" class=" password">Forgot Password ?</a>
-                                </div>
+                          <livewire:auth.login />
+                          <livewire:auth.register />
 
-                              </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">Remember Me</span>
-                              </label>
-                              <div class="d-grid my-3">
-                                <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Log
-                                  In</button>
-                              </div>
-                            </form>
-                          </div>
-                          <!--nav register-->
-                          <div class="tab-pane fade" id="nav-register" role="tabpanel"
-                            aria-labelledby="nav-register-tab">
-                            <form id="form2" class="form-group flex-wrap p-3 ">
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="exampleInputEmail2"
-                                  class="form-label fs-6 text-uppercase fw-bold text-black">Email
-                                  Address</label>
-                                <input type="text" id="exampleInputEmail2" name="email" placeholder="Email"
-                                  class="form-control ps-3">
-                              </div>
-                              <div class="form-input col-lg-12 my-4">
-                                <label for="inputPassword2"
-                                  class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-                                <input type="password" id="inputPassword2" placeholder="Password"
-                                  class="form-control ps-3" aria-describedby="passwordHelpBlock">
-                              </div>
-                              <label class="py-3">
-                                <input type="checkbox" required="" class="d-inline">
-                                <span class="label-body text-black">I agree to the <a href="#"
-                                    class="text-black password border-bottom">Privacy Policy</a>
-                                </span>
-                              </label>
-                              <div class="d-grid my-3">
-                                <button
-                                  class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none fs-6">Sign
-                                  Up</button>
-                              </div>
-                            </form>
-                          </div>
                         </div>
                       </div>
                     </div>
