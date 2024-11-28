@@ -5,8 +5,7 @@
             <label for="exampleInputNome4"
               class="form-label fs-6 text-uppercase fw-bold text-black">Nome
               </label>
-            <input type="text" id="exampleInputEmail4" name="nome" placeholder="Nome"
-              class="form-control ps-3">
+            <input type="text" id="exampleInputEmail4" name="nome" placeholder="Nome" class="form-control ps-3" wire:model="name">
               @error('nome')
               <div class="alert alert-danger">{{ $message }}</div>
               @enderror
@@ -15,8 +14,7 @@
         <label for="exampleInputEmail4"
           class="form-label fs-6 text-uppercase fw-bold text-black">Email
           Address</label>
-        <input type="text" id="exampleInputEmail4" name="email" placeholder="Email"
-          class="form-control ps-3">
+        <input type="text" id="exampleInputEmail4" name="email" placeholder="Email" class="form-control ps-3" wire:model='email'>
           @error('email')
           <div class="alert alert-danger">{{ $message }}</div>
           @enderror
@@ -24,8 +22,7 @@
       <div class="form-input col-lg-12 my-4">
         <label for="inputPassword4"
           class="form-label  fs-6 text-uppercase fw-bold text-black">Password</label>
-        <input type="password" id="inputPassword4" placeholder="Password"
-          class="form-control ps-3" aria-describedby="passwordHelpBlock">
+        <input type="password" id="inputPassword4" placeholder="Password" class="form-control ps-3" aria-describedby="passwordHelpBlock" wire:model='password'>
         @error('password')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror

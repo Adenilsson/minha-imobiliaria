@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Home;
+use App\Livewire\Auth\ResetPasswordComponent;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,10 @@ use App\Livewire\Home;
 //});
 
 Route::get('/', Home::class)->name('/');
+
+Route::get('password/reset', ResetPasswordComponent::class)->name('password.request');
+Route::post('password/email', [ResetPasswordComponent::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', ResetPasswordComponent::class)->name('password.reset');
+Route::post('password/reset', [ResetPasswordComponent::class, 'reset'])->name('password.update');
+
 
