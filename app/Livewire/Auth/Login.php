@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class Login extends Component
 {
@@ -14,20 +15,19 @@ class Login extends Component
         'email' => 'required|email',
         'password' => 'required|min:6',
     ];
-    public function login(){
-        //dd('Email: '.$this->email. " Password: ".$this->password);
-        $this->validate();
-        if(Auth::attempt(['email'=>$this->email, 'password'=>$this->password])){
-            $user = Auth::user();
-            //dd($user);
-            return redirect()->route('/');
-        }else{
-
-            session()->flash('error','Email ou senha incorretos.');
-            //dd("'email'=>'Invalid email or password'");
-            return redirect()->back()->withErrors(['email'=>'Invalid email or password']);
-        }
-    }
+    public function login() {
+        $this->validate(); // Verificar se o email existe
+        $user = User::where('email', $this->email)->first();
+        if (!$user) {
+            session()->flash('error', 'O email não foi encontrado em nossa base de dados. Verifique o email.');
+            return;
+        } // Verificar se as credenciais estão corretas
+        if (!Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            session()->flash('error', 'Senha inválida.');
+            return;
+        } // Login bem-sucedido
+        session()->flash('message', 'Login realizado com sucesso.');
+        return redirect()->intended('/'); }
 
     public function isLogado()
      {
