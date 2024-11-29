@@ -16,9 +16,8 @@
                         <li class="nav-item"><a class="nav-link me-md-4" href="#residence">Properties</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#about-us">About</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#help">Contact</a></li>
+
                         @auth
-
-
                         <li class="nav-item dropdown">
                             <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Registers</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
