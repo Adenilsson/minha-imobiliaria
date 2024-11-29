@@ -28,4 +28,8 @@ Route::post('password/email', [ResetPasswordComponent::class, 'sendResetLinkEmai
 Route::get('password/reset/{token}', ResetPasswordComponent::class)->name('password.reset');
 Route::post('password/reset', [ResetPasswordComponent::class, 'reset'])->name('password.update');
 
+Route::middleware(['auth', 'permission:edit articles'])->group(function () {
+    Route::get('/articles', 'ArticleController@index')->name('articles.index');
+    Route::post('/articles', 'ArticleController@store')->name('articles.store');
+});
 

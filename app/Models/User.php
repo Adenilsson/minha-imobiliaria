@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Roles;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+   public function roles(){
+    return $this->belongsToMany(Roles::class);
+   }
+
+   public function permissions(){
+    return $this->roles->map->permission->flatten()->unique('id');
+   }
+
+   public function hasPermissionTo($permission)
+    {
+        return $this->permissions()->contains('nome', $permission);
+
+   }
 }

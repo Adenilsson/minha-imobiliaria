@@ -14,9 +14,8 @@
                 <span class="text-danger">{{ $message }}</span>
             @enderror
             <div id="passwordHelpBlock" class="form-text text-center">
-                <a href="{{ route('password.request') }}" class="password">Recuperar Password?</a>
 
-                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Login</a>
+                <a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Recuperar Password?</a>
 
 
             </div>

@@ -16,8 +16,11 @@
                         <li class="nav-item"><a class="nav-link me-md-4" href="#residence">Properties</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#about-us">About</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#help">Contact</a></li>
+                        @auth
+
+
                         <li class="nav-item dropdown">
-                            <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
+                            <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Registers</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a href="index.html" class="dropdown-item">About</a></li>
                                 <li><a href="index.html" class="dropdown-item">Blog</a></li>
@@ -31,6 +34,7 @@
                                 <li><a href="index.html" class="dropdown-item">Styles</a></li>
                             </ul>
                         </li>
+                        @endauth
                         @guest
                             <li class="nav-item"><a class="nav-link mx-md-4" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a></li>
                         @endguest
