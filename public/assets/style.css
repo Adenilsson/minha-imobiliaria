@@ -1,6 +1,6 @@
 /*
 Theme Name: Rentiz
-Theme URI: 
+Theme URI:
 Author: TemplatesJungle
 Author URI: https://templatesjungle.com/
 Description: Rentiz is Bootstrap 5 HTML Template for real estate by TemplatesJungle.
@@ -30,6 +30,9 @@ body {
   line-height: 1.6em;
   color: var(--body-text-color);
   background-color: var(--dark-color);
+  height: 100%;
+  margin: 0;
+  padding: 0;
 
 }
 
@@ -386,6 +389,7 @@ p.testimonial-p {
 
 
 /*---- footer section start ----  */
+
 section#footer {
   background: #1A242F;
 }
@@ -401,7 +405,7 @@ section#footer {
 }
 
 footer.row {
-  padding: 120px 0px;
+  padding: 30px 0px;
 }
 
 
