@@ -14,6 +14,9 @@
                     </button>
                 </div>
             </div>
+            @if (session()->has('message'))
+                    <div class="alert alert-danger"> {{ session('message') }} </div>
+                @endif
         </form>
 
         <!-- Formulário de Registro -->

@@ -24,17 +24,19 @@ class RegisterProprietario extends Component
 
         if (preg_match('/^[0-9]{11}$/', $search)) {
             $proprietarios = Proprietario::where('cpf', $search)->get();
+            dd($proprietarios);
+            $this->nome = $proprietarios[0]->nome;
+            $this->email = $proprietarios[0]->email;
+            $this->data_de_nasc = $proprietarios[0]->data_de_nasc;
+            $this->telefone = $proprietarios[0]->telefone;
+            $this->estado_civil = $proprietarios[0]->estado_civil;
+            $this->cpf = $proprietarios[0]->cpf;
         } else {
-            $proprietarios = Proprietario::where('nome', 'like', '%' . $search . '%')->get();
+            ///$proprietarios = Proprietario::where('nome', 'like', '%' . $search . '%')->get();
+            session()->flash('message','O Cpf informado não é valid tente novamente.');
         } // Processar os resultados da busca (por exemplo, armazenar na sessão ou definir como propriedade do componente)
-        $this->nome = $proprietarios[0]->nome;
-        $this->nome = $proprietarios[0]->email;
-        $this->nome = $proprietarios[0]->data_de_nasc;
-        $this->nome = $proprietarios[0]->telefone;
-        $this->nome = $proprietarios[0]->estado_civil;
-        $this->nome = $proprietarios[0]->cpf;
-        //dd($proprietarios[0]->nome);
-        session()->flash('resultados', $proprietarios);
+
+        //session()->flash('resultados', $proprietarios);
     }
 
     public function register(){
