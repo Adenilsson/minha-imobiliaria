@@ -24,7 +24,7 @@ class RegisterProprietario extends Component
 
         if (preg_match('/^[0-9]{11}$/', $search)) {
             $proprietarios = Proprietario::where('cpf', $search)->get();
-            dd($proprietarios);
+            //dd($proprietarios);
             $this->nome = $proprietarios[0]->nome;
             $this->email = $proprietarios[0]->email;
             $this->data_de_nasc = $proprietarios[0]->data_de_nasc;
