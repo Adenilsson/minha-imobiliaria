@@ -22,10 +22,22 @@
                         <label for="estado" class="form-label fs-6 text-uppercase fw-bold text-white">
                             Selecione o Estado
                         </label>
-                        <select id="estado" class="form-select mb-2 mb-lg-0" wire:model="estado_id" @if(empty($pais_id)) disabled @endif>
+                        <select id="estado" class="form-select mb-2 mb-lg-0" wire:model.lazy="estado_id" @if(empty($pais_id)) disabled @endif>
                             <option value="">Selecione o Estado</option>
                             @foreach ($estados as $estado)
                                 <option value="{{ $estado->id }}">{{ $estado->nome }}</option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="estado" class="form-label fs-6 text-uppercase fw-bold text-white">
+                            Selecione a Cidade
+                        </label>
+                        <select id="estado" class="form-select mb-2 mb-lg-0" wire:model.lazy="cidade_id" @if(empty($estado_id)) disabled @endif>
+                            <option value="">Selecione o Cidade</option>
+                            @foreach ($cidades as $cidade)
+                                <option value="{{ $cidade->id }}">{{ $cidade->nome }}</option>
                             @endforeach
                         </select>
                     </div>
