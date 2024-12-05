@@ -15,13 +15,13 @@
                         <li class="nav-item"><a class="nav-link active me-md-4" href="{{ route('home').'#billboard' }}">Home</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#residence">Properties</a></li>
                         <li class="nav-item"><a class="nav-link me-md-4" href="#about-us">About</a></li>
-                        <li class="nav-item"><a class="nav-link me-md-4" href="#help">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link me-md-4" href="{{ route('register-endereco')}}">Contact</a></li>
 
                         @auth
                         <li class="nav-item dropdown">
                             <a class="nav-link me-md-4 text-center dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cadastros</a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a href="#" class="dropdown-item">Imoveis</a></li>
+                                <li><a href="{{ route('register-endereco').'#endereco'}}" class="dropdown-item">Imoveis</a></li>
                                 <li><a href="{{ route('register-propietario').'#register-proprietario' }}" class="dropdown-item">Proprietáio</a></li>
                                 <li><a href="#" class="dropdown-item">Endereço </a></li>
                                 <li><a href="#" class="dropdown-item">Properties </a></li>

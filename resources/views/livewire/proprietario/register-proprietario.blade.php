@@ -6,7 +6,7 @@
         <form id="form_proprietario" class="form-group flex-wrap p-3 " wire:submit.prevent="busca_proprietario">
             <div class="form-group row marg border border-light p-3">
                 <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                    <input type="text" class="form-control py-3" wire:model="search" placeholder="Nome ou CPF">
+                    <input type="text" class="form-control py-3" wire:model="search" placeholder="CPF">
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                     <button class="btn btn-primary btn-lg btn-dark text-uppercase btn-rounded-none form-control py-3">
@@ -14,9 +14,9 @@
                     </button>
                 </div>
             </div>
-            @if (session()->has('message'))
-                    <div class="alert alert-danger"> {{ session('message') }} </div>
-                @endif
+            @error('search')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </form>
 
         <!-- Formulário de Registro -->
@@ -89,9 +89,9 @@
                 </div>
             </div>
         </form>
-        @if (session()->has('message'))
+        @if (session()->has('register'))
 
-            <div class="{{ session('status') == 'success' ? 'alert alert-success' : 'alert alert-danger' }}"> {{ session('status') }} </div>
+            <div class="{{ session('status') == 'success' ? 'alert alert-success' : 'alert alert-danger' }}"> {{ session('register') }} </div>
         @endif
     </div>
 </div>
