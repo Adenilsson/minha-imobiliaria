@@ -26,7 +26,7 @@
                     <label for="exampleInputNome4" class="form-label fs-6 text-uppercase fw-bold text-white">
                         Nome
                     </label>
-                    <input type="text" id="exampleInputNome4" name="nome" placeholder="Nome" class="form-control ps-3" value="{{ old('rua',$nome) }}" wire:model="nome">
+                    <input type="text" id="exampleInputNome4" name="nome" placeholder="Nome" class="form-control ps-3"  wire:model="nome">
                     @error('nome')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

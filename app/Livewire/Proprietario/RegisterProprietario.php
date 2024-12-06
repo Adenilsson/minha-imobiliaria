@@ -52,6 +52,15 @@ class RegisterProprietario extends Component
             'telefone' => 'required|string|max:15',
             'estado_civil' => 'required|string|max:50',
         ]);
+        $dados_proprietario =[
+            'nome' => $this->nome,
+            'cpf' => $this->cpf,
+            'email' => $this->email,
+            'data_de_nasc' => $this->data_de_nasc,
+            'telefone' => $this->telefone,
+            'estado_civil' => $this->estado_civil,
+            ];
+        /*
 
         try {
             // Busca o proprietário pelo CPF
@@ -73,7 +82,7 @@ class RegisterProprietario extends Component
             session()->flash('register', 'Erro ao registrar Proprietário: ' . $e->getMessage());
             session()->flash('status', 'error');
         }
-
+        */
         return view('livewire.proprietario.register-proprietario');
     }
 

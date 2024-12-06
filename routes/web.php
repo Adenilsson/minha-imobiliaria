@@ -9,6 +9,7 @@ use App\Livewire\Endereco\RegisterEndereco;
 use App\Livewire\Proprietario\RegisterProprietario;
 use App\Livewire\Residence\RegisterResidence;
 use App\Livewire\Teste\Teste;
+use App\Livewire\Imagem\ImagemImovel;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,7 @@ use App\Livewire\Teste\Teste;
 
 Route::get('/', Home::class)->name('home');
 
-
-
+Route::get('imagem_imovel', ImagemImovel::class)->name('imagem_imovel');
 Route::get('register-endereco', RegisterEndereco::class)->name('register-endereco');
 Route::get('register-imovel', RegisterResidence::class)->name('register-residence');
 Route::get('password/reset', ResetPasswordComponent::class)->name('password.request');

@@ -12,11 +12,19 @@ class RegisterEndereco extends Component
 {
     public $title ="Endereço";
 
-        public $paises;
+        public $paises  =[];
         public $estados =[];
+        public $cidades = [];
         public $pais_id;
         public $estado_id;
-        public $cidades = [];
+        public $cidade_id;
+        public $logradouro;
+        public $bairro;
+        public $numero;
+        public $cep;
+        public $complemento;
+
+
 
         public function mount()
         {
@@ -31,6 +39,32 @@ class RegisterEndereco extends Component
         public function updatedEstadoId($value){
 
             $this->cidades = Cidade::where('tb_estado_id', $value)->get();
+
+        }
+        public function salve(){
+            $this->validate([
+                'logradouro' => 'required|string|max:255',
+                'numero' => 'required|integer',
+                'bairro' => 'required|string|max:255',
+                'complemento' => 'nullable|string|max:255',
+                'pais_id' => 'required|integer',
+                'estado_id' => 'required|integer',
+                'cidade_id' => 'required|integer',
+                'cep' => 'required|string|max:16',
+            ]);
+            $dados_endereco =[
+                'logradouro' => $this->logradouro,
+                'numero' => $this->numero,
+                'bairro' => $this->bairro,
+                'complemento' => $this->complemento,
+                'tb_pais_id' => $this->pais_id,
+                'tb_estado_id' => $this->estado_id,
+                'tb_cidade_id' => $this->cidade_id,
+                'cep' => $this->cep,
+            ];
+           // dd($dados_endereco);
+            session()->put('endereco',$dados_endereco);
+            return redirect()->route('register-residence');
 
         }
 
