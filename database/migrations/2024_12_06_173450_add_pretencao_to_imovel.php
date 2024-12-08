@@ -14,6 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('imovel', function (Blueprint $table) {
+            $table->integer('condicao_id')->nullable(false)->after('categoria_id');
             $table->integer('pretencao_id')->nullable(false)->after('condicao_id');
         });
     }

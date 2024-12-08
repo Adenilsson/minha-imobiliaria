@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pais', function (Blueprint $table) {
+        Schema::create('tb_pais', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 45)->nullable(false);
             $table->string('codigo', 3)->nullable(false);
