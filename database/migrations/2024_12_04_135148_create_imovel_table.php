@@ -30,13 +30,15 @@ return new class extends Migration
             $table->bigInteger('endereco_id')->unsigned()->nullable(false);
             $table->bigInteger('proprietario_id')->unsigned()->nullable(false);
             $table->bigInteger('tb_tipo_imovel_id')->unsigned()->nullable(false);
-            $table->bigInteger('condicao_id')->unsigned()->nullable(false)->default(0);
+            $table->bigInteger('condicao_id')->unsigned()->nullable(false);
+            $table->bigInteger('pretencao_id')->unsigned()->nullable(false);
 
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('endereco_id')->references('id')->on('enderecos');
             $table->foreign('proprietario_id')->references('id')->on('proprietario');
             $table->foreign('tb_tipo_imovel_id')->references('id')->on('tb_tipo_imovel');
             $table->foreign('condicao_id')->references('id')->on('condicao');
+            $table->foreign('pretencao_id')->references('id')->on('pretencao');
 
         });
     }
