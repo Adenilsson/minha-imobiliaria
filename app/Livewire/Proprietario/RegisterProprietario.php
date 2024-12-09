@@ -18,6 +18,7 @@ class RegisterProprietario extends Component
     public $telefone;
     public $estado_civil;
     public $search;
+
     public function busca_proprietario() {
         $validatedData = $this->validate([
             'search' => ['required', 'string', 'max:14', new ValidarCpf],
@@ -25,15 +26,21 @@ class RegisterProprietario extends Component
         $search = $this->search; // Verifica se a entrada é um CPF (supõe-se que o CPF tenha 11 dígitos)
         if (preg_match('/^[0-9]{11}$/', $search)) {
             $proprietarios = Proprietario::where('cpf', $search)->get();
-            //dd($proprietarios);
-            $this->nome = $proprietarios[0]->nome;
-            $this->email = $proprietarios[0]->email;
-            $this->data_de_nasc = $proprietarios[0]->data_de_nasc;
-            $this->telefone = $proprietarios[0]->telefone;
-            $this->estado_civil = $proprietarios[0]->estado_civil;
-            $this->cpf = $proprietarios[0]->cpf;
-            session()->flash('status','success');
-            session()->flash('cpf','Proprietáro encontrado.');
+            if ($proprietarios->isEmpty()) {
+                session()->flash('status','error');
+                session()->flash('search','Não foi incontrado nemhum registro no banco de dados.');
+            }else{
+                $this->nome = $proprietarios[0]->nome;
+                $this->email = $proprietarios[0]->email;
+                $this->data_de_nasc = $proprietarios[0]->data_de_nasc;
+                $this->telefone = $proprietarios[0]->telefone;
+                $this->estado_civil = $proprietarios[0]->estado_civil;
+                $this->cpf = $proprietarios[0]->cpf;
+                session()->flash('status','success');
+                session()->flash('cpf','Proprietáro encontrado.');
+            }
+
+
         } else {
             session()->flash('status','error');
             session()->flash('cpf','O Cpf informado não é valid tente novamente.');
@@ -83,7 +90,8 @@ class RegisterProprietario extends Component
             session()->flash('status', 'error');
         }
         */
-        return view('livewire.proprietario.register-proprietario');
+        session()->put('dados_proprietario',$dados_proprietario);
+        return redirect()->route('register-endereco');
     }
 
 

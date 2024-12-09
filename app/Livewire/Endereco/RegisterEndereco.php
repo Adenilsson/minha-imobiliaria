@@ -10,7 +10,7 @@ use App\Models\Cidade;
 
 class RegisterEndereco extends Component
 {
-    public $title ="Endereço";
+    public $title ="Endereço Do Imóvel.";
 
         public $paises  =[];
         public $estados =[];
@@ -23,6 +23,7 @@ class RegisterEndereco extends Component
         public $numero;
         public $cep;
         public $complemento;
+        public $apartamento;
 
 
 
@@ -45,6 +46,7 @@ class RegisterEndereco extends Component
             $this->validate([
                 'logradouro' => 'required|string|max:255',
                 'numero' => 'required|integer',
+                'apartamento'=>'nullable',
                 'bairro' => 'required|string|max:255',
                 'complemento' => 'nullable|string|max:255',
                 'pais_id' => 'required|integer',
@@ -55,6 +57,7 @@ class RegisterEndereco extends Component
             $dados_endereco =[
                 'logradouro' => $this->logradouro,
                 'numero' => $this->numero,
+                'apartamento'=>$this->apartamento,
                 'bairro' => $this->bairro,
                 'complemento' => $this->complemento,
                 'tb_pais_id' => $this->pais_id,
@@ -62,14 +65,22 @@ class RegisterEndereco extends Component
                 'tb_cidade_id' => $this->cidade_id,
                 'cep' => $this->cep,
             ];
-           // dd($dados_endereco);
-            session()->put('endereco',$dados_endereco);
+
+            //dd($dados_endereco);
+            session()->put('dados_endereco',$dados_endereco);
             return redirect()->route('register-residence');
 
         }
 
         public function render()
         {
-            return view('livewire.endereco.register-endereco');
+            if(session()->has("dados_proprietario")){
+                return view('livewire.endereco.register-endereco');
+
+            }else{
+                session()->flash("error", "Por favor cadastre o proprietário primeiro. ");
+                return redirect()->route('register-propietario');
+            }
+
         }
     }

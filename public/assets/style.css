@@ -727,3 +727,12 @@ iconify-icon.property-icon {
   font-size: 30px;
 
 }
+/*--------------------------------------------------------------
+Properties imagens previw
+--------------------------------------------------------------*/
+
+.img-preview {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}

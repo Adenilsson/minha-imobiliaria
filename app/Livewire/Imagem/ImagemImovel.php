@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Livewire\Imagem;
+
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Imagem_imovel;
 use App\Models\Imovel;
 use App\Models\Endereco;
-use Intervention\Image\ImageManagerStatic as Imagem;
+
+//use Intervention\Image\ImageManagerStatic as Imagem;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -17,18 +19,16 @@ class ImagemImovel extends Component
 {
     use WithFileUploads;
 
+    public $title = "Upload de imagens";
     public $imagem1, $imagem2, $imagem3, $imagem4, $imagem5;
     public $capa1, $capa2, $capa3, $capa4, $capa5;
-    public $endereco; // Declare a propriedade pública
+    public $endereco;
 
     public function mount()
     {
-
-        $this->checkSession('dados_imovel', 'cadastroImovel#cad');
-        $this->checkSession('dados_endereco', 'cadastroEndereco/imovel#cad');
-        $this->checkSession('endereco_proprietario', 'cadastroEndereco/proprietario#cad');
-        $this->checkSession('dados_proprietario', 'cadastroProprietario#cad');
-
+        $this->checkSession('dados_imovel', 'cadastroImovel');
+        $this->checkSession('dados_endereco', 'cadastroEndereco');
+        $this->checkSession('dados_proprietario', 'cadastroProprietario');
     }
 
     public function checkSession($sessionKey, $route)
@@ -58,8 +58,8 @@ class ImagemImovel extends Component
 
         try {
             $di = session()->get('dados_imovel');
-            $ep = session()->get('endereco_proprietario');
             $dp = session()->get('dados_proprietario');
+            $ep = session()->get('dados_endereco');
             $im = session()->get('dados_endereco');
 
             if (is_null($di) || is_null($ep) || is_null($dp) || is_null($im)) {
@@ -89,13 +89,9 @@ class ImagemImovel extends Component
             DB::rollBack();
             $this->deleteImages();
             session()->flash('error', $e->getMessage());
-            dd("ERRO ");
             return redirect()->intended('cadastroImagemImovel#cad');
         }
     }
-
-
-
 
     public function saveImages($imovelId)
     {
@@ -158,8 +154,6 @@ class ImagemImovel extends Component
 
     public function render()
     {
-
-            return view('livewire.imagem.imagem-imovel');
-
+        return view('livewire.imagem.imagem-imovel');
     }
 }

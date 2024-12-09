@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="form-input col-lg-6 my-4">
                         <label for="exampleInputNome4" class="form-label fs-6 text-uppercase fw-bold text-white">
-                            Rua
+                            Logradouro
                         </label>
                         <input type="text" id="exampleInputNome4" name="logradouro" placeholder="Logradouro" class="form-control ps-3"  wire:model="logradouro">
                         @error('logradouro')
@@ -29,7 +29,7 @@
                         <label for="exampleInputNome4" class="form-label fs-6 text-uppercase fw-bold text-white">
                             Apartamento
                         </label>
-                        <input type="text" id="exampleInputNome4" name="apartamento" placeholder="Apartamento" class="form-control ps-3"  wire:model="apatamento">
+                        <input type="text" id="exampleInputNome4" name="apartamento" placeholder="Apartamento" class="form-control ps-3"  wire:model="apartamento">
                         @error('apartamento')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror

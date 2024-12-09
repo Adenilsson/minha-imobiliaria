@@ -14,6 +14,9 @@
                     </button>
                 </div>
             </div>
+            @if(session()->has("search"))
+            <div class="alert alert-danger">{{ session()->get("search") }}</div>
+            @endif
             @error('search')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
