@@ -10,6 +10,9 @@
                     {{ session('message') }}
                 </div>
             @endif
+            @if(session()->has('error'))
+            <div class="alert alert-danger">{{session()->get('error')}}</div>
+            @endif
             <form id="uploadForm" wire:submit="save">
                 @csrf
                 <div class="row">

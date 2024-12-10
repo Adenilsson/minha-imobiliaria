@@ -18,7 +18,7 @@ class Imagem_imovel extends Model
     ];
 
     // Nome da tabela, se necessário
-    protected $table = 'tb_imagem_imovels';
+    protected $table = 'imagem_imovel';
 
     // Relacionamento com Imovel
     public function imovel()

@@ -8,11 +8,12 @@ class Endereco extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_enderecos';
+    protected $table = 'enderecos';
     protected $fillable = [
         'id',
         'logradouro',
         'numero',
+        'apartamento',
         'bairro',
         'cep',
         'complemento',

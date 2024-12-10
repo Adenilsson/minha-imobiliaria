@@ -46,7 +46,7 @@ class RegisterEndereco extends Component
             $this->validate([
                 'logradouro' => 'required|string|max:255',
                 'numero' => 'required|integer',
-                'apartamento'=>'nullable',
+                'apartamento'=>'string|nullable',
                 'bairro' => 'required|string|max:255',
                 'complemento' => 'nullable|string|max:255',
                 'pais_id' => 'required|integer',

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement()->unique();
             $table->string('logradouro')->nullable(false);
             $table->integer('numero')->nullable(false);
+            $table->string('apartamento')->nullable(true);
             $table->string('bairro')->nullable(false);
             $table->string('cep')->nullable(false);
             $table->string('complemento')->nullable(true);

@@ -93,7 +93,7 @@
                             Complemento
                         </label>
                         <textarea  id="exampleInputNome4" name="complemento" placeholder="Complemento" class="form-control ps-3" rows="2"  wire:model="complemento"></textarea>
-                        @error('cep')
+                        @error('complemento')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>

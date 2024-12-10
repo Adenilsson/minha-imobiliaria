@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Livewire\Residence;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Tipo_Imovel;
 use App\Models\Condicao;
@@ -46,15 +46,16 @@ class RegisterResidence extends Component
         ]);
 
         $dados_imovel = [
-            'tipo_imovel_id' => $this->tipo_imovel_id,
+            'tb_tipo_imovel_id' => $this->tipo_imovel_id,
             'condicao_id' => $this->condicao_id,
             'pretencao_id' => $this->pretencao_id,
             'area_construida' => $this->area_construida,
             'area_total' => $this->area_total,
+            'users_id' =>  Auth::id(),
             'quartos' => $this->quartos, // Corrigido de 'quarto'
             'banheiros' => $this->banheiros, // Corrigido de 'banheiro'
             'garagem' => $this->garagem,
-            'descricao_imovel' => $this->descricao_imovel, // Corrigido de 'descricao'
+            'descricao' => $this->descricao_imovel, // Corrigido de 'descricao'
             'valor' => $this->valor,
             'status' => 0,
         ];

@@ -8,12 +8,12 @@ class Imovel extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_imovel';
+    protected $table = 'imovel';
 
     protected $fillable = [
         'id',
-        'tb_users_id',
-        'tb_endereco_id',
+        'users_id',
+        'endereco_id',
         'descricao',
         'area_total',
         'area_construida',
@@ -22,10 +22,11 @@ class Imovel extends Model
         'suites',
         'garagem',
         'valor',
-        'tb_categoria_id',
         'tb_tipo_imovel_id',
-        'tb_proprietario_id',
+        'proprietario_id',
         'status',
+        'condicao_id',
+        'pretencao_id',
     ];
 
     // Relacionamento com users
