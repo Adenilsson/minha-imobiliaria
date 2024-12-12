@@ -1,7 +1,7 @@
   <!-- Residence start  -->
   <section id="residence">
     <div class="container  my-5 py-5">
-      <h2 class="text-capitalize m-0 py-lg-5">Popular Residence</h2>
+      <h2 class="text-capitalize m-0 py-lg-5">{{$title}}</h2>
 
       <div class="swiper-button-next residence-swiper-next  residence-arrow"></div>
       <div class="swiper-button-prev residence-swiper-prev residence-arrow"></div>

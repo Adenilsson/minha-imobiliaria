@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class ResidenceStart extends Component
 {
+    public $title = "Popular Residence";
     public $imoveis;
     public function  mount(){
         $this-> getImoveisComRelacionamentos();

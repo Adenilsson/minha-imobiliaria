@@ -35,7 +35,7 @@
       </div>
 
       <div class="residence-btn">
-        <a href="index.html" class="btn btn-primary btn-lg my-5">View All Properties</a>
+        <a href="{{ route('home').'#residence' }}" class="btn btn-primary btn-lg my-5">View All Properties</a>
       </div>
 
     </div>
