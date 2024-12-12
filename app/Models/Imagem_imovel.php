@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Imagem_imovel extends Model
 {
-    //use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'id',
@@ -17,13 +16,10 @@ class Imagem_imovel extends Model
         'tb_imovel_id'
     ];
 
-    // Nome da tabela, se necessário
     protected $table = 'imagem_imovel';
 
-    // Relacionamento com Imovel
     public function imovel()
     {
-        //return $this->belongsTo(Imovel::class, 'tb_imovel_id', 'id');
         return $this->belongsTo(Imovel::class, 'tb_imovel_id');
     }
 }

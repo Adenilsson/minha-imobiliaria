@@ -9,42 +9,29 @@ class Endereco extends Model
     use HasFactory;
 
     protected $table = 'enderecos';
+
     protected $fillable = [
-        'id',
-        'logradouro',
-        'numero',
-        'apartamento',
-        'bairro',
-        'cep',
-        'complemento',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-        'tb_cidade_id',
-        'tb_estado_id',
-        'tb_pais_id',
+        'id', 'logradouro', 'numero', 'apartamento', 'bairro', 'cep',
+        'complemento', 'created_at', 'updated_at', 'deleted_at',
+        'tb_cidade_id', 'tb_estado_id', 'tb_pais_id'
     ];
 
-    // Relacionamento com cidade
     public function cidade()
     {
-        return $this->belongsTo(Cidade::class);
+        return $this->belongsTo(Cidade::class, 'tb_cidade_id');
     }
 
-    // Relacionamento com tb_imovel
-    public function imovel()
+    public function imoveis()
     {
-        return $this->hasMany(Imovel::class);
+        return $this->hasMany(Imovel::class, 'endereco_id');
     }
 
-    // Relacionamento com Proprietario
-    public function proprietario()
+    public function proprietarios()
     {
         return $this->hasMany(Proprietario::class);
     }
 
-    // Relacionamento com Imobiliaria
-    public function imobiliaria()
+    public function imobiliarias()
     {
         return $this->hasMany(Imobiliaria::class);
     }

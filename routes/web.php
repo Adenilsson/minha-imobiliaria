@@ -10,6 +10,8 @@ use App\Livewire\Proprietario\RegisterProprietario;
 use App\Livewire\Residence\RegisterResidence;
 use App\Livewire\Teste\Teste;
 use App\Livewire\Imagem\ImagemImovel;
+use App\Models\Imovel;
+use App\Livewire\Residence\Detalhe;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,8 @@ use App\Livewire\Imagem\ImagemImovel;
 
 Route::get('/', Home::class)->name('home');
 
+
+Route::get('detalhe-residence/{id}', Detalhe::class)->name('detalhe-residence');
 Route::get('imagem_imovel', ImagemImovel::class)->name('imagem_imovel');
 Route::get('register-endereco', RegisterEndereco::class)->name('register-endereco');
 Route::get('register-imovel', RegisterResidence::class)->name('register-residence');

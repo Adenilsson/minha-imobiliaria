@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Pais extends Model
 {
     use HasFactory;
+
     protected $table = 'tb_pais';
     protected $fillable = [
-        'nome',
-        'codigo',
-        ];
+        'nome', 'codigo'
+    ];
 
-    //Relacionamento com estado
-    public function estados(){
-        return $this->hasMany(Estado::class);
+    public function estados()
+    {
+        return $this->hasMany(Estado::class, 'tb_pais_id');
     }
-
 }

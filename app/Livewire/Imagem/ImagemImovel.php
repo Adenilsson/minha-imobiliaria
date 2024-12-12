@@ -36,56 +36,66 @@ class ImagemImovel extends Component
 
 
     public function save()
-    {
-        DB::beginTransaction();
+{
+    DB::beginTransaction();
 
-        $this->validate([
-            'imagem1' => 'required|image|max:26000', // 25MB Max
-            'imagem2' => 'required|image|max:26000', // 25MB Max
-            'imagem3' => 'required|image|max:26000', // 25MB Max
-            'imagem4' => 'required|image|max:26000', // 25MB Max
-            'imagem5' => 'required|image|max:26000', // 25MB Max
-        ]);
+    $this->validate([
+        'imagem1' => 'required|image|max:26000', // 25MB Max
+        'imagem2' => 'required|image|max:26000', // 25MB Max
+        'imagem3' => 'required|image|max:26000', // 25MB Max
+        'imagem4' => 'required|image|max:26000', // 25MB Max
+        'imagem5' => 'required|image|max:26000', // 25MB Max
+    ]);
 
-        $this->imagem1 = $this->addLogoToImage($this->imagem1);
-        $this->imagem2 = $this->addLogoToImage($this->imagem2);
-        $this->imagem3 = $this->addLogoToImage($this->imagem3);
-        $this->imagem4 = $this->addLogoToImage($this->imagem4);
-        $this->imagem5 = $this->addLogoToImage($this->imagem5);
+    $this->imagem1 = $this->addLogoToImage($this->imagem1);
+    $this->imagem2 = $this->addLogoToImage($this->imagem2);
+    $this->imagem3 = $this->addLogoToImage($this->imagem3);
+    $this->imagem4 = $this->addLogoToImage($this->imagem4);
+    $this->imagem5 = $this->addLogoToImage($this->imagem5);
 
-        try {
-            $di = session()->get('dados_imovel');
-            $dp = session()->get('dados_proprietario');
-            $im = session()->get('dados_endereco');
+    try {
+        $di = session()->get('dados_imovel');
+        $dp = session()->get('dados_proprietario');
+        $im = session()->get('dados_endereco');
 
-            if (is_null($di) || is_null($dp) || is_null($im)) {
-                throw new \Exception("Dados de sessão faltando.");
-            }
-
-            $this->proprietario = Proprietario::create($dp);
-            $this->endereco = Endereco::create($im);
-            $imovel = Imovel::create(array_merge($di, [
-                'users_id' => $di['users_id'],
-                'endereco_id' => $this->endereco->id,
-                'proprietario_id' => $this->proprietario->id,
-            ]));
-
-            $this->saveImages($imovel->id);
-            DB::commit();
-
-            $this->reset('imagem1', 'imagem2', 'imagem3', 'imagem4', 'imagem5');
-            $this->clearSession();
-            $this->clearTemporaryFiles();
-
-            session()->flash('message', 'Imagens enviadas com sucesso!');
-            return redirect()->intended('/#home');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $this->deleteImages();
-            session()->flash('error', $e->getMessage());
-            return redirect()->intended('imagem_imovel');
+        if (is_null($di) || is_null($dp) || is_null($im)) {
+            throw new \Exception("Dados de sessão faltando.");
         }
+
+        // Busca o proprietário pelo CPF
+        $proprietario = Proprietario::where('cpf', $dp["cpf"])->first();
+
+        if ($proprietario) {
+            $proprietario->update($dp);
+        } else {
+            $proprietario = Proprietario::create($dp);
+        }
+
+        $this->endereco = Endereco::create($im);
+
+        $imovel = Imovel::create(array_merge($di, [
+            'users_id' => $di['users_id'],
+            'endereco_id' => $this->endereco->id,
+            'proprietario_id' => $proprietario->id, // Corrigido: use o $proprietario com o ID correto
+        ]));
+
+        $this->saveImages($imovel->id);
+        DB::commit();
+
+        $this->reset('imagem1', 'imagem2', 'imagem3', 'imagem4', 'imagem5');
+        $this->clearSession();
+        $this->clearTemporaryFiles();
+
+        session()->flash('message', 'Imagens enviadas com sucesso!');
+        return redirect()->intended('/#home');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        $this->deleteImages();
+        session()->flash('error', $e->getMessage());
+        return redirect()->intended('imagem_imovel');
     }
+}
+
 
     public function saveImages($imovelId)
     {
